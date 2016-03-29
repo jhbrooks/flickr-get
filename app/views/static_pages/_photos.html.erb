@@ -1,6 +1,9 @@
-<div class="photos">
-  <% photos.each do |photo| %>
-    <%= link_to(image_tag(FlickRaw.url(photo), title: photo.title),
-                FlickRaw.url_photopage(photo)) %>
-  <% end %>
-</div>
+<%= content_tag :div, msg, class: "alert alert-#{msg_type}" %>
+<% unless photos.nil? || photos.to_a.empty? %>
+  <div class="photos">
+    <% photos.each do |photo| %>
+      <%= link_to(image_tag(FlickRaw.url(photo), title: photo.title),
+                  FlickRaw.url_photopage(photo)) %>
+    <% end %>
+  </div>
+<% end %>

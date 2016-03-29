@@ -9,16 +9,17 @@ module StaticPagesHelper
     begin
       photos = user_photos(user_id)
       if photos.any?
-        flash.now[:success] = "Photostream found!"
-        render partial: "photos", locals: { photos: photos }
+        msg = "Photostream found!"
+        msg_type = "success"
       else
-        flash.now[:info] = "Photostream found, but no public photos are "\
-                           "available."
-        return
+        msg = "Photostream found, but no public photos are available."
+        msg_type = "info"
       end
     rescue FlickRaw::FailedResponse
-      flash.now[:danger] = "User not found."
-      return
+      msg = "User not found."
+      msg_type = "danger"
     end
+    render partial: "photos", locals: { photos: photos,
+                                        msg: msg, msg_type: msg_type }
   end
 end
