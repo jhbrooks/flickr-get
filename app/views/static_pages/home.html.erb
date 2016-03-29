@@ -16,7 +16,7 @@
 <% end %>
 
 <% unless params[:id].blank? %>
-  <% cache ("photos") do %>
+  <% cache ("photos_cache_#{params[:id]}") do %>
     <%= render_photos(params[:id]) %>
   <% end %>
 <% end %>
